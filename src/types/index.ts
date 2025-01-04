@@ -13,7 +13,7 @@ interface IOrder {
 
 
 // 
-interface IProduct {
+interface IProductItem {
     id: string;
     description: string;
     image: string;
@@ -31,10 +31,10 @@ interface IBasket {
 
 //
 interface CatalogModel {
-    items: IProduct[];
-    setItems(items: IProduct): void;
-    getProduct(id:string): IProduct;
+    items: IProductItem[];
+    setItems(items: IProductItem): void;
+    getProduct(id:string): IProductItem;
 }
 
-export { IOrder, IProduct }
+export { IOrder, IProductItem as IProduct }
 
