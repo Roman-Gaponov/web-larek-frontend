@@ -10,18 +10,20 @@ interface IOrder {
 //     title: string;
 // }
 
+
+
 // 
-interface IProductItem {
+interface IProduct {
     id: string;
     description: string;
     image: string;
     title: string;
     category: string;
-    price: number;
+    price: number | null;
 }
 
 // 
-interface IBasketModel {
+interface IBasket {
     items: Map<string, number>;
     add(id: string): void;
     remove(id: string): void;
@@ -29,10 +31,10 @@ interface IBasketModel {
 
 //
 interface CatalogModel {
-    items: IProductItem[];
-    setItems(items: IProductItem): void;
-    getProduct(id:string): IProductItem;
+    items: IProduct[];
+    setItems(items: IProduct): void;
+    getProduct(id:string): IProduct;
 }
 
-export { IOrder, IProductItem }
+export { IOrder, IProduct }
 
