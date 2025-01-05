@@ -1,40 +1,33 @@
-//
+/* ОБЩИЕ ИНТЕРФЕЙСЫ И ТИПИЗАЦИЯ */
+
+// общий интерфейс для данных по товару
+interface IProduct {
+	id: string;
+	description: string;
+	image: string;
+	title: string;
+	category: string;
+	price: number | null;
+}
+
+// общий интерфейс заказа
 interface IOrder {
-    id: string;
-    total: number;
-} 
-
-//
-// interface IProduct {
-//     id: string;
-//     title: string;
-// }
-
-
-
-// 
-interface IProductItem {
-    id: string;
-    description: string;
-    image: string;
-    title: string;
-    category: string;
-    price: number | null;
+	id: string;
+	items?: string[];
+	email?: string;
+	phone?: string;
+	address?: string;
+	payment?: PaymentMethod;
+	total?: number;
 }
 
-// 
-interface IBasket {
-    items: Map<string, number>;
-    add(id: string): void;
-    remove(id: string): void;
-}
+// тип для ответа сервера при отправки сформированного заказа
+type TOrderResult = Omit<IOrder, 'id' | 'total'>;
 
-//
-interface CatalogModel {
-    items: IProductItem[];
-    setItems(items: IProductItem): void;
-    getProduct(id:string): IProductItem;
-}
+// тип выбора метода оплаты
+type PaymentMethod = 'card' | 'cash';
 
-export { IOrder, IProductItem as IProduct }
+// тип ошибок формы
+type FormErrors = Partial<Record<keyof IOrder, string>>;
 
+export { IProduct, IOrder, TOrderResult, PaymentMethod, FormErrors };
