@@ -3,7 +3,8 @@ import { IProduct, IOrder, PaymentMethod, FormErrors } from '../..';
 export interface IAppData {
 	catalog: IProduct[];
 	basket: IProduct[];
-	preview: IProduct | null;
+	//preview: IProduct | null;
+	preview: string;
 	order: IOrder;
 	formErrors: FormErrors;
 	
@@ -20,5 +21,5 @@ export interface IAppData {
 	validateContacts(): void;
 	isInBasket(item: IProduct): boolean;
 	getBasketList(): IProduct[];
-	getTotal: () => void;
+	getTotal(): void;
 }
