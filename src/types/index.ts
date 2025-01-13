@@ -21,6 +21,9 @@ interface IOrder {
 	total: number;
 }
 
+// тип данных корзины для модели
+type TBasketModel = Pick<IOrder, 'items' | 'total'>;
+
 // более гибкий тип для использования в модели данных
 type TOrderModel = Partial<IOrder>;
 
@@ -42,6 +45,7 @@ type FormErrors = Partial<Record<keyof IOrder, string>>;
 export {
 	IProduct,
 	IOrder,
+	TBasketModel,
 	TOrderModel,
 	TOrderForm,
 	TContactsForm,
