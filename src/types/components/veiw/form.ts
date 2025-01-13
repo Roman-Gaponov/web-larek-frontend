@@ -1,7 +1,9 @@
-export interface IForm {
-    submit: HTMLButtonElement;
-    errors: HTMLElement;
+export interface IForm<Type> {
+	onInputChange(field: keyof Type, value: string): void;
+	render(state: Partial<Type> & IFormState): HTMLFormElement;
+}
 
-    isInputChanged(field: any): void;
-    render(): void;
+export interface IFormState {
+	valid: boolean;
+	errors: string[];
 }

@@ -3,7 +3,7 @@ import { IEvents } from '../../types/components/base/events';
 // базовый абстрактный класс для создания и отображения компонентов пользовательского интерфейса.
 // содержит основные методы для работы с компонентами отображения.
 export abstract class View<Type> {
-	constructor(readonly container: HTMLElement, readonly events?: IEvents) {}
+	constructor(protected readonly container: HTMLElement, protected readonly events?: IEvents) {}
 
 	// установить текст
 	protected setText(element: HTMLElement, value: string): void {
@@ -21,7 +21,7 @@ export abstract class View<Type> {
 	}
 
 	// переключить класс элемента
-	toogleClass(element: HTMLElement, className: string, force?: boolean): void {
+	toggleClass(element: HTMLElement, className: string, force?: boolean): void {
 		element.classList.toggle(className, force);
 	}
 
