@@ -1,4 +1,7 @@
 export interface IOrderSuccess {
-	total: HTMLElement;
-	button: HTMLButtonElement;
+	total: number;
+}
+
+export interface IOrderSuccessActions {
+	onClick: () => void;
 }

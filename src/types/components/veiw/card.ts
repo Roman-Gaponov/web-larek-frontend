@@ -4,3 +4,7 @@ export interface ICard {
     image: HTMLElement;
     price: HTMLElement;
 }
+
+export interface ICardActions {
+    onClick: (event: MouseEvent) => void;
+  }

@@ -1,5 +1,5 @@
-export interface IBasket {
-    list: HTMLElement;
-    total: HTMLElement;
-    button: HTMLElement;
+export interface IBasketView {
+    items: HTMLElement[];
+    total: number;
+    selected: string[];
 }
