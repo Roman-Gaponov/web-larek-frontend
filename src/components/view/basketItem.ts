@@ -17,4 +17,6 @@ export class BasketItem extends View<IBasketItem> {
 		this._index = ensureElement<HTMLElement>('.basket__item-index', container);
 		this._deleteButton = container.querySelector('.card__button');
 	}
+
+  
 }

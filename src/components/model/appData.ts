@@ -11,7 +11,7 @@ import {
 	PaymentMethod,
 } from '../../types';
 
-class AppData extends Model<IAppData> {
+export class AppData extends Model<IAppData> {
 	catalog: IProduct[];
 	//preview: IProduct | null = null;
 	preview: string;
