@@ -4,3 +4,7 @@ export interface IBasketItem {
 	price: HTMLElement;
 	deleteButton: HTMLElement;
 }
+
+export interface IBasketItemActions {
+	onClick: (event: MouseEvent) => void;
+}
