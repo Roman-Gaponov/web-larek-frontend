@@ -16,7 +16,28 @@ export class BasketItem extends View<IBasketItem> {
 		this._price = ensureElement<HTMLElement>('.card__price', container);
 		this._index = ensureElement<HTMLElement>('.basket__item-index', container);
 		this._deleteButton = container.querySelector('.card__button');
+
+		if (actions.onClick) {
+			if (this._deleteButton) {
+				container.removeEventListener('click', actions.onClick);
+				this._deleteButton.addEventListener('click', actions.onClick);
+			}
+		}
 	}
 
-  
+	set index(value: number) {
+		this.setText(this._index, String(value));
+	}  
+
+	set title(value: string) {
+		this.setText(this._tilte, value);
+	}
+
+	set price(value: number) {
+		if (value === null) {
+			this.setText(this._price, 'Бесценно');
+		} else {
+			this.setText(this._price, `${value} синапсов`);
+		}
+	}
 }

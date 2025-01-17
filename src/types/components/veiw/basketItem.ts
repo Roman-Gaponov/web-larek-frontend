@@ -1,8 +1,7 @@
 export interface IBasketItem {
-	index: HTMLElement;
-	title: HTMLElement;
-	price: HTMLElement;
-	deleteButton: HTMLElement;
+	index: number;
+	title: string;
+	price: number;
 }
 
 export interface IBasketItemActions {
