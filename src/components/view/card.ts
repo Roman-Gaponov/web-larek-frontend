@@ -5,7 +5,7 @@ import { categories } from '../../utils/constants';
 
 export class Card<Type> extends View<TCard> {
 	protected _title: HTMLElement;
-	protected _category: HTMLElement;
+	protected _category?: HTMLElement;
 	protected _image: HTMLImageElement;
 	protected _price: HTMLElement;
 

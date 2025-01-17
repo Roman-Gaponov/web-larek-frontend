@@ -1,11 +1,11 @@
 import { View } from "../base/view";
 import { IModal, IModalData } from "../../types/components/veiw/modal";
-import { ensureElement } from "../../utils/utils";
 import { IEvents } from "../../types/components/base/events";
+import { ensureElement } from "../../utils/utils";
 
 export class Modal extends View<IModalData> implements IModal {
-  protected _closeButton: HTMLButtonElement;
-  protected _content: HTMLElement;
+    protected _content: HTMLElement;
+    protected _closeButton: HTMLButtonElement;
 
   constructor(protected container: HTMLElement, protected events: IEvents) {
       super(container, events);
@@ -22,12 +22,12 @@ export class Modal extends View<IModalData> implements IModal {
       this._content.replaceChildren(value);
   }
 
-  open() {
+  open():void {
       this.toggleClass(this.container, 'modal_active', true);
       this.events.emit('modal:open');
   }
 
-  close() {
+  close():void {
       this.toggleClass(this.container, 'modal_active', false);
       this.content = null;
       this.events.emit('modal:close');

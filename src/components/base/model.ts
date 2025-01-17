@@ -6,7 +6,7 @@ export abstract class Model<Type> {
 		Object.assign(this, data);
 	}
 
-	protected emitChanges?(event: string, data?: object) {
+	protected emitChanges?(event: string, data?: object):void {
 		this.events.emit(event, data ?? {});
 	}
 }

@@ -4,9 +4,9 @@ import { IBasketItemActions } from '../../types/components/veiw/basketItem';
 import { ensureElement } from '../../utils/utils';
 
 export class BasketItem extends View<IBasketItem> {
+	protected _index: HTMLElement;
 	protected _tilte: HTMLElement;
 	protected _price: HTMLElement;
-	protected _index: HTMLElement;
 	protected _deleteButton: HTMLButtonElement;
 
 	constructor(container: HTMLElement, actions?: IBasketItemActions) {
@@ -27,13 +27,13 @@ export class BasketItem extends View<IBasketItem> {
 
 	set index(value: number) {
 		this.setText(this._index, String(value));
-	}  
+	}
 
 	set title(value: string) {
 		this.setText(this._tilte, value);
 	}
 
-	set price(value: number) {
+	set price(value: number | null) {
 		if (value === null) {
 			this.setText(this._price, 'Бесценно');
 		} else {

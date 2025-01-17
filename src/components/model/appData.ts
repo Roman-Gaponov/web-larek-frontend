@@ -13,30 +13,27 @@ import {
 
 export class AppData extends Model<IAppData> {
 	catalog: IProduct[];
-	//preview: IProduct | null = null;
-	preview: string;
+	preview: string | null;
 	basket: TBasketModel = {
 		items: [],
 		total: 0,
 	};
 	order: TOrderModel = {
-		items: [],
 		email: '',
 		phone: '',
 		address: '',
 		payment: 'card',
-		//total: 0,
 	};
 	formErrors: FormErrors = {};
 
 	setCatalog(items: IProduct[]): void {
 		this.catalog = items;
-		this.events.emit('catalog:changed', { catalog: this.catalog });
+		this.events.emit('catalog:change', { catalog: this.catalog });
 	}
 
 	setPreview(item: IProduct): void {
 		this.preview = item.id;
-		this.emitChanges('preview:changed', item);
+		this.emitChanges('preview:change', item);
 	}
 
 	setProductToBasket(item: IProduct): void {
@@ -66,13 +63,13 @@ export class AppData extends Model<IAppData> {
 	removeProductFromBasket(item: IProduct): void {
 		this.basket.items = this.basket.items.filter((id) => id !== item.id);
 		this.basket.total -= item.price;
-		this.events.emit('basket:changed', this.basket);
+		this.events.emit('basket:change', this.basket);
 	}
 
 	clearBasket(): void {
 		this.basket.items = [];
 		this.basket.total = 0;
-		this.events.emit('basket:changed');
+		this.events.emit('basket:change');
 	}
 
 	clearOrder(): void {
@@ -90,7 +87,7 @@ export class AppData extends Model<IAppData> {
 			errors.address = 'Необходимо указать адрес';
 		}
 		this.formErrors = errors;
-		this.events.emit('orderFormErrors:changed', this.formErrors);
+		this.events.emit('orderFormErrors:change', this.formErrors);
 		return Object.keys(errors).length === 0;
 	}
 
@@ -107,7 +104,7 @@ export class AppData extends Model<IAppData> {
 			errors.phone = 'Неправильно указан телефон';
 		}
 		this.formErrors = errors;
-		this.events.emit('contactsFormErrors:changed', this.formErrors);
+		this.events.emit('contactsFormErrors:change', this.formErrors);
 		return Object.keys(errors).length === 0;
 	}
 
@@ -115,7 +112,9 @@ export class AppData extends Model<IAppData> {
 		return this.basket.items.includes(item.id);
 	}
 
-	//getBasketList(): IProduct[] {}
+	getBasketList(): string[] {
+		return this.basket.items;
+	}
 
 	getTotal(): number {
 		return this.basket.total;

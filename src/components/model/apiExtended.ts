@@ -1,6 +1,6 @@
 import { Api } from '../base/api';
 import { ApiListResponse } from '../../types/components/base/api';
-import { IOrder, IProduct, TOrderResult } from '../../types';
+import { TOrderModel, IProduct, TOrderResult } from '../../types';
 import { IApiExtended } from '../../types/components/model/apiExtended';
 
 export class ApiExtended extends Api implements IApiExtended {
@@ -11,7 +11,7 @@ export class ApiExtended extends Api implements IApiExtended {
 		this.cdn = cdn;
 	}
 
-    // получить данные о товаре по его id
+  // получить данные о товаре по его id
 	getProduct(id: string): Promise<IProduct> {
 		return this.get(`/product/${id}`).then((item: IProduct) => ({
 			...item,
@@ -19,7 +19,7 @@ export class ApiExtended extends Api implements IApiExtended {
 		}));
 	}
 
-    // получить список всех товаров
+  // получить список всех товаров
 	getProductList(): Promise<IProduct[]> {
 		return this.get(`/product/`).then((data: ApiListResponse<IProduct>) =>
 			data.items.map((item: IProduct) => ({
@@ -29,8 +29,8 @@ export class ApiExtended extends Api implements IApiExtended {
 		);
 	}
 
-    //отправить сформированный заказ на сервер
-	postOrder(order: IOrder): Promise<TOrderResult> {
+  //отправить сформированный заказ на сервер
+	postOrder(order: TOrderModel): Promise<TOrderResult> {
 		return this.post('/order', order).then((data: TOrderResult) => data);
 	}
 }

@@ -1,17 +1,15 @@
 import { View } from '../base/view';
 import { IBasketView } from '../../types/components/veiw/basket';
 import { IEvents } from '../../types/components/base/events';
-import { cloneTemplate, createElement, ensureElement } from '../../utils/utils';
+import { createElement, ensureElement } from '../../utils/utils';
 
 export class Basket extends View<IBasketView> {
-	static template = ensureElement<HTMLTemplateElement>('#basket');
-
 	protected _list: HTMLElement;
 	protected _total: HTMLElement;
-	protected _button: HTMLElement;
+	protected _button: HTMLButtonElement;
 
-	constructor(protected events: IEvents) {
-		super(cloneTemplate(Basket.template), events);
+	constructor(container: HTMLElement, protected events: IEvents) {
+		super(container, events);
 
 		this._list = ensureElement<HTMLElement>('.basket__list', this.container);
 		this._total = this.container.querySelector('.basket__price');
@@ -26,21 +24,21 @@ export class Basket extends View<IBasketView> {
 		this.items = [];
 	}
 
-	toggleButton(state: boolean) {
+	protected setButtonState(state: boolean): void {
 		this.setDisabled(this._button, !state);
 	}
 
 	set items(items: HTMLElement[]) {
 		if (items.length) {
 			this._list.replaceChildren(...items);
-			this.toggleButton(true);
+			this.setButtonState(true);
 		} else {
 			this._list.replaceChildren(
 				createElement<HTMLParagraphElement>('p', {
 					textContent: 'Корзина пуста',
 				})
 			);
-			this.toggleButton(false);
+			this.setButtonState(false);
 		}
 	}
 

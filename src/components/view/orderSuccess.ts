@@ -3,17 +3,16 @@ import {
 	IOrderSuccess,
 	IOrderSuccessActions,
 } from '../../types/components/veiw/orderSuccess';
-import { IEvents } from '../../types/components/base/events';
 import { ensureElement } from '../../utils/utils';
 
 export class OrderSuccess extends View<IOrderSuccess> {
 	protected _total: HTMLElement;
-	protected _close: HTMLElement;
+	protected _button: HTMLButtonElement;
 
-	constructor(container: HTMLElement, actions: IOrderSuccessActions) {
+	constructor(container: HTMLElement, actions?: IOrderSuccessActions) {
 		super(container);
 
-		this._close = ensureElement<HTMLElement>(
+		this._button = ensureElement<HTMLButtonElement>(
 			'.order-success__close',
 			this.container
 		);
@@ -23,7 +22,7 @@ export class OrderSuccess extends View<IOrderSuccess> {
 		);
 
 		if (actions.onClick) {
-			this._close.addEventListener('click', actions.onClick);
+			this._button.addEventListener('click', actions.onClick);
 		}
 	}
 

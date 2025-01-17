@@ -5,7 +5,7 @@ import { ensureElement } from '../../utils/utils';
 
 export class CardPreview extends Card<ICardPreview> {
 	protected _description?: HTMLElement;
-	protected _button?: HTMLElement;
+	protected _button?: HTMLButtonElement;
 
 	constructor(container: HTMLElement, actions?: ICardActions) {
 		super(container, actions);
@@ -23,5 +23,9 @@ export class CardPreview extends Card<ICardPreview> {
 
 	set description(value: string) {
 		this.setText(this._description, value);
+	}
+
+	set button(value: string) {
+		this.setText(this._button, value);
 	}
 }

@@ -1,5 +1,4 @@
 import { Form } from './form';
-// import { IContactsForm } from "../../types/components/veiw/contactsForm";
 import { PaymentMethod, TOrderForm } from '../../types';
 import { IEvents } from '../../types/components/base/events';
 import { ensureElement } from '../../utils/utils';
