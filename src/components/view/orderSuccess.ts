@@ -17,7 +17,7 @@ export class OrderSuccess extends View<IOrderSuccess> {
 			this.container
 		);
 		this._total = ensureElement<HTMLElement>(
-			'.order-success__desctiption',
+			'.order-success__description',
 			this.container
 		);
 

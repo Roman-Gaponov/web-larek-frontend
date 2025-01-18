@@ -28,7 +28,7 @@ export class AppData extends Model<IAppData> {
 
 	setCatalog(items: IProduct[]): void {
 		this.catalog = items;
-		this.events.emit('catalog:change', { catalog: this.catalog });
+		this.emitChanges('catalog:change', this.catalog);
 	}
 
 	setPreview(item: IProduct): void {
@@ -38,6 +38,8 @@ export class AppData extends Model<IAppData> {
 
 	setProductToBasket(item: IProduct): void {
 		this.basket.items.push(item.id);
+		this.basket.total += item.price;
+		this.emitChanges('basket:change', this.basket);
 	}
 
 	setContactsField(field: keyof TContactsForm, value: string): void {
@@ -63,13 +65,13 @@ export class AppData extends Model<IAppData> {
 	removeProductFromBasket(item: IProduct): void {
 		this.basket.items = this.basket.items.filter((id) => id !== item.id);
 		this.basket.total -= item.price;
-		this.events.emit('basket:change', this.basket);
+		this.emitChanges('basket:change', this.basket);
 	}
 
 	clearBasket(): void {
 		this.basket.items = [];
 		this.basket.total = 0;
-		this.events.emit('basket:change');
+		this.emitChanges('basket:change');
 	}
 
 	clearOrder(): void {
@@ -93,7 +95,7 @@ export class AppData extends Model<IAppData> {
 
 	validateContacts(): boolean {
 		const errors: typeof this.formErrors = {};
-		if (!this.order.address) {
+		if (!this.order.email) {
 			errors.email = 'Необходимо указать email';
 		} else if (!EMAIL_REGEXP.test(this.order.email)) {
 			errors.email = 'Неправильно указан email';

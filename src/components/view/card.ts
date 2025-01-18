@@ -38,4 +38,12 @@ export class Card<Type> extends View<TCard> {
 	set image(value: string) {
 		this.setImage(this._image, value, this.title);
 	}
+
+	set price(value: number | null) {
+		if (value === null) {
+			this.setText(this._price, 'Бесценно');
+		} else {
+			this.setText(this._price, `${value} синапсов`);
+		}
+	}
 }

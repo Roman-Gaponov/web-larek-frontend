@@ -34,7 +34,7 @@ type TOrderForm = Pick<IOrder, 'payment' | 'address'>;
 type TContactsForm = Pick<IOrder, 'email' | 'phone'>;
 
 // тип для ответа сервера при отправки сформированного заказа
-type TOrderResult = Omit<IOrder, 'id' | 'total'>;
+type TOrderResult = Pick<IOrder, 'id' | 'total'>;
 
 // тип выбора метода оплаты
 type PaymentMethod = 'card' | 'cash';

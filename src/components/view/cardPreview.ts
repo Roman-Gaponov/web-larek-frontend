@@ -1,6 +1,7 @@
 import { Card } from './card';
 import { ICardPreview } from '../../types/components/veiw/cardPreview';
 import { ICardActions } from '../../types/components/veiw/card';
+import { IProduct } from '../../types';
 import { ensureElement } from '../../utils/utils';
 
 export class CardPreview extends Card<ICardPreview> {
@@ -16,10 +17,17 @@ export class CardPreview extends Card<ICardPreview> {
 		if (actions.onClick) {
 			if (this._button) {
 				container.removeEventListener('click', actions.onClick);
-				container.addEventListener('click', actions.onClick);
+				this._button.addEventListener('click', actions.onClick);
 			}
 		}
 	}
+
+	setNotForSale(item:IProduct) {
+		if(!item.price) {
+			this.button = 'Не продаётся';
+			this._button.setAttribute('disabled', 'true');
+		}
+  }
 
 	set description(value: string) {
 		this.setText(this._description, value);

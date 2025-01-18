@@ -42,7 +42,7 @@ export class OrderForm extends Form<TOrderForm> {
 		this.toggleClass(this._paymentCash, 'button_alt-active', value === 'cash');
 	}
 
-	set assress(value: string) {
+	set address(value: string) {
 		this._address.value = value;
 	}
 }

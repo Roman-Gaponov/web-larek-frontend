@@ -15,7 +15,11 @@ export class Page extends View<IPage> {
     this._catalog = ensureElement<HTMLElement>('.gallery');
     this._counter = ensureElement<HTMLElement>('.header__basket-counter');
     this._basket = ensureElement<HTMLElement>('.header__basket');
-    this._wrapper = ensureElement<HTMLElement>('.header__wrapper');
+    this._wrapper = ensureElement<HTMLElement>('.page__wrapper');
+
+		this._basket.addEventListener('click', () => {
+			this.events.emit('basket:open');
+	});
 	}
 
 	set catalog(items: HTMLElement[]) {
